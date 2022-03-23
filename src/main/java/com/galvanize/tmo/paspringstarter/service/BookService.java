@@ -3,10 +3,7 @@ package com.galvanize.tmo.paspringstarter.service;
 import com.galvanize.tmo.paspringstarter.data.*;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class BookService {
@@ -24,6 +21,13 @@ public class BookService {
         for (Book book : books) {
             bookList.add(book);
         }
+
+        bookList.sort(new Comparator<Book>() {
+            @Override
+            public int compare(Book o1, Book o2) {
+                return o1.getTitle().compareTo(o2.getTitle());
+            }
+        });
 
         return new HashMap<String, List<Book>>()
         {{
